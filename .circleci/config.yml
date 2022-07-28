@@ -1,24 +1,12 @@
-# Use the latest 2.1 version of CircleCI pipeline process engine.
-# See: https://circleci.com/docs/2.0/configuration-reference
-version: 2.1
-orbs: 
-  bridgecrew: bridgecrew/bridgecrew@1.0.5
-
-# Define a job to be invoked later in a workflow.
-# See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
   build:
     machine: true
     steps:
-      - checkout
-      - bridgecrew/install
-      - bridgecrew/scan:
-          api-key-variable: BC_API_KEY
-          directory: .
-workflows: null
-# Invoke jobs via workflows
-# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
-# workflows:
-#build-workflow:
- #   jobs:
-  #    - build
+      - checkov/scan:
+          api-key: 6bridgecrew-9example-2api-key1-demo9
+          directory: ./terragoat
+          output: json
+
+orbs:
+  checkov: bridgecrew/checkov-orb@0.0.3
+version: 2.1
